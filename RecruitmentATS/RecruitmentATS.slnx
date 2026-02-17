@@ -1,0 +1,8 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/RecruitmentATS.API/RecruitmentATS.API.csproj" />
+    <Project Path="src/RecruitmentATS.Application/RecruitmentATS.Application.csproj" />
+    <Project Path="src/RecruitmentATS.Domain/RecruitmentATS.Domain.csproj" />
+    <Project Path="src/RecruitmentATS.Infrastructure/RecruitmentATS.Infrastructure.csproj" />
+  </Folder>
+</Solution>
