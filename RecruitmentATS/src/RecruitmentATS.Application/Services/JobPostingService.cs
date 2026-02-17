@@ -3,20 +3,18 @@ using RecruitmentATS.Application.DTOs.JobPosting;
 using RecruitmentATS.Application.Interfaces;
 using RecruitmentATS.Domain.Entities;
 using RecruitmentATS.Domain.Enums;
-using RecruitmentATS.Infrastructure.Data;
-using RecruitmentATS.Infrastructure.Repositories;
 
 namespace RecruitmentATS.Application.Services;
 
 public class JobPostingService : IJobPostingService
 {
     private readonly IJobPostingRepository _jobPostingRepo;
-    private readonly AppDbContext _context;
+    private readonly ITagRepository _tagRepo;
 
-    public JobPostingService(IJobPostingRepository jobPostingRepo, AppDbContext context)
+    public JobPostingService(IJobPostingRepository jobPostingRepo, ITagRepository tagRepo)
     {
         _jobPostingRepo = jobPostingRepo;
-        _context = context;
+        _tagRepo = tagRepo;
     }
 
     public async Task<JobPostingResponseDto> CreateAsync(CreateJobPostingDto dto)
@@ -36,7 +34,7 @@ public class JobPostingService : IJobPostingService
 
         if (dto.Tags.Any())
         {
-            var tagEntities = await GetOrCreateTagsAsync(dto.Tags);
+            var tagEntities = await _tagRepo.GetOrCreateTagsAsync(dto.Tags);
             foreach (var tag in tagEntities)
             {
                 jobPosting.JobPostingTags.Add(new JobPostingTag
@@ -47,8 +45,7 @@ public class JobPostingService : IJobPostingService
             }
         }
 
-        _context.JobPostings.Add(jobPosting);
-        await _context.SaveChangesAsync();
+        await _jobPostingRepo.AddAsync(jobPosting);
         return MapToResponse(jobPosting);
     }
 
@@ -57,7 +54,7 @@ public class JobPostingService : IJobPostingService
         var jobPosting = await _jobPostingRepo.GetByIdWithTagsAsync(id);
         if (jobPosting is null) return null;
 
-        var candidateCount = await _context.Candidates.CountAsync(c => c.JobPostingId == id);
+        var candidateCount = await _jobPostingRepo.GetCandidateCountAsync(id);
         var response = MapToResponse(jobPosting);
         response.CandidateCount = candidateCount;
         return response;
@@ -65,12 +62,7 @@ public class JobPostingService : IJobPostingService
 
     public async Task<IEnumerable<JobPostingResponseDto>> GetAllAsync()
     {
-        var jobPostings = await _context.JobPostings
-            .Include(j => j.JobPostingTags).ThenInclude(jt => jt.Tag)
-            .Include(j => j.Candidates)
-            .OrderByDescending(j => j.CreatedAt)
-            .ToListAsync();
-
+        var jobPostings = await _jobPostingRepo.GetAllWithTagsAndCandidatesAsync();
         return jobPostings.Select(j =>
         {
             var dto = MapToResponse(j);
@@ -86,7 +78,7 @@ public class JobPostingService : IJobPostingService
         foreach (var j in jobPostings)
         {
             var dto = MapToResponse(j);
-            dto.CandidateCount = await _context.Candidates.CountAsync(c => c.JobPostingId == j.Id);
+            dto.CandidateCount = await _jobPostingRepo.GetCandidateCountAsync(j.Id);
             result.Add(dto);
         }
         return result;
@@ -111,8 +103,8 @@ public class JobPostingService : IJobPostingService
 
         if (dto.Tags is not null)
         {
-            _context.JobPostingTags.RemoveRange(jobPosting.JobPostingTags);
-            var tagEntities = await GetOrCreateTagsAsync(dto.Tags);
+            await _jobPostingRepo.RemoveJobPostingTagsAsync(jobPosting);
+            var tagEntities = await _tagRepo.GetOrCreateTagsAsync(dto.Tags);
             foreach (var tag in tagEntities)
             {
                 jobPosting.JobPostingTags.Add(new JobPostingTag
@@ -123,7 +115,7 @@ public class JobPostingService : IJobPostingService
             }
         }
 
-        await _context.SaveChangesAsync();
+        await _jobPostingRepo.UpdateAsync(jobPosting);
         return MapToResponse(jobPosting);
     }
 
@@ -140,28 +132,8 @@ public class JobPostingService : IJobPostingService
         var jobPosting = await _jobPostingRepo.GetByIdWithTagsAsync(id);
         if (jobPosting is null) return null;
         jobPosting.Status = JobPostingStatus.Published;
-        await _context.SaveChangesAsync();
+        await _jobPostingRepo.UpdateAsync(jobPosting);
         return MapToResponse(jobPosting);
-    }
-
-    private async Task<List<Tag>> GetOrCreateTagsAsync(List<string> tagNames)
-    {
-        var tags = new List<Tag>();
-        foreach (var name in tagNames.Distinct(StringComparer.OrdinalIgnoreCase))
-        {
-            var normalized = name.Trim().ToLowerInvariant();
-            var existing = await _context.Tags.FirstOrDefaultAsync(t => t.Name.ToLower() == normalized);
-            if (existing is not null)
-                tags.Add(existing);
-            else
-            {
-                var newTag = new Tag { Name = name.Trim() };
-                _context.Tags.Add(newTag);
-                tags.Add(newTag);
-            }
-        }
-        await _context.SaveChangesAsync();
-        return tags;
     }
 
     private static JobPostingResponseDto MapToResponse(JobPosting entity) => new()

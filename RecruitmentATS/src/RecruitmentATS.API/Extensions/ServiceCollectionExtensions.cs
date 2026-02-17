@@ -11,25 +11,18 @@ namespace RecruitmentATS.API.Extensions;
 
 public static class ServiceCollectionExtensions
 {
-    public static IServiceCollection AddApplicationServices(this IServiceCollection services)
-    {
-        services.AddScoped<IJobPostingService, JobPostingService>();
-        services.AddFluentValidationAutoValidation();
-        services.AddValidatorsFromAssemblyContaining<CreateJobPostingValidator>();
-        return services;
-    }
+   public static IServiceCollection AddInfrastructureServices(
+    this IServiceCollection services, IConfiguration configuration)
+{
+    services.AddDbContext<AppDbContext>(options =>
+        options.UseMySql(
+            configuration.GetConnectionString("DefaultConnection"),
+            new MySqlServerVersion(new Version(8, 0, 36)),
+            o => o.MigrationsAssembly("RecruitmentATS.Infrastructure")
+        ));
 
-    public static IServiceCollection AddInfrastructureServices(
-        this IServiceCollection services, IConfiguration configuration)
-    {
-        services.AddDbContext<AppDbContext>(options =>
-            options.UseNpgsql(
-                configuration.GetConnectionString("DefaultConnection"),
-                o => o.MigrationsAssembly("RecruitmentATS.Infrastructure")
-            ));
-
-        services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
-        services.AddScoped<IJobPostingRepository, JobPostingRepository>();
-        return services;
-    }
+    services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+    services.AddScoped<IJobPostingRepository, JobPostingRepository>();
+    return services;
+}
 }
