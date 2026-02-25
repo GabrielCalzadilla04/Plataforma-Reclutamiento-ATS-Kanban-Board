@@ -15,4 +15,5 @@ public class Postulacion
 
     // Navigation property
     public Vacante Vacante { get; set; } = null!;
+
 }

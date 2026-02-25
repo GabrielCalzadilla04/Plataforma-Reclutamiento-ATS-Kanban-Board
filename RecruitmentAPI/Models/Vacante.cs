@@ -15,4 +15,5 @@ public class Vacante
 
     // Navigation property — one vacante has MANY requisitos
     public List<Requisito> Requisitos { get; set; } = new();
+    public List<Postulacion> Postulaciones { get; set; } = new();
 }

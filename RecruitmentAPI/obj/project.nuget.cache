@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "/rUYSbOXNfY=",
+  "dgSpecHash": "AhTayq8+DOo=",
   "success": true,
-  "projectFilePath": "/home/devbm/Documents/CODE/TEST3/RecruitmentPlatform/RecruitmentAPI/RecruitmentAPI.csproj",
+  "projectFilePath": "/home/devbm/Documents/CODE/TEST3/Plataforma-de-Reclutamiento-ATS---Kanban-Board-/RecruitmentAPI/RecruitmentAPI.csproj",
   "expectedPackageFiles": [
     "/home/devbm/.nuget/packages/humanizer.core/2.14.1/humanizer.core.2.14.1.nupkg.sha512",
     "/home/devbm/.nuget/packages/microsoft.aspnetcore.openapi/8.0.24/microsoft.aspnetcore.openapi.8.0.24.nupkg.sha512",

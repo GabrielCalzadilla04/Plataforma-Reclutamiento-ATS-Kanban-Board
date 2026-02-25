@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/home/devbm/Documents/CODE/TEST3/RecruitmentPlatform/RecruitmentAPI/RecruitmentAPI.csproj": {}
+    "/home/devbm/Documents/CODE/TEST3/Plataforma-de-Reclutamiento-ATS---Kanban-Board-/RecruitmentAPI/RecruitmentAPI.csproj": {}
   },
   "projects": {
-    "/home/devbm/Documents/CODE/TEST3/RecruitmentPlatform/RecruitmentAPI/RecruitmentAPI.csproj": {
+    "/home/devbm/Documents/CODE/TEST3/Plataforma-de-Reclutamiento-ATS---Kanban-Board-/RecruitmentAPI/RecruitmentAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/devbm/Documents/CODE/TEST3/RecruitmentPlatform/RecruitmentAPI/RecruitmentAPI.csproj",
+        "projectUniqueName": "/home/devbm/Documents/CODE/TEST3/Plataforma-de-Reclutamiento-ATS---Kanban-Board-/RecruitmentAPI/RecruitmentAPI.csproj",
         "projectName": "RecruitmentAPI",
-        "projectPath": "/home/devbm/Documents/CODE/TEST3/RecruitmentPlatform/RecruitmentAPI/RecruitmentAPI.csproj",
+        "projectPath": "/home/devbm/Documents/CODE/TEST3/Plataforma-de-Reclutamiento-ATS---Kanban-Board-/RecruitmentAPI/RecruitmentAPI.csproj",
         "packagesPath": "/home/devbm/.nuget/packages/",
-        "outputPath": "/home/devbm/Documents/CODE/TEST3/RecruitmentPlatform/RecruitmentAPI/obj/",
+        "outputPath": "/home/devbm/Documents/CODE/TEST3/Plataforma-de-Reclutamiento-ATS---Kanban-Board-/RecruitmentAPI/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/home/devbm/.nuget/NuGet/NuGet.Config"
