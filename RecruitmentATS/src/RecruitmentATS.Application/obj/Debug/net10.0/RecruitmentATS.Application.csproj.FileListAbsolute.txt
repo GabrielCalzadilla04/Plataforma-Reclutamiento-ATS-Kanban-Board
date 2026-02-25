@@ -1,6 +1,0 @@
-C:\Users\Grupo B\Documents\projectv2\Plataforma-de-Reclutamiento-ATS---Kanban-Board-\RecruitmentATS\src\RecruitmentATS.Application\obj\Debug\net10.0\RecruitmentATS.Application.csproj.AssemblyReference.cache
-C:\Users\Grupo B\Documents\projectv2\Plataforma-de-Reclutamiento-ATS---Kanban-Board-\RecruitmentATS\src\RecruitmentATS.Application\obj\Debug\net10.0\RecruitmentATS.Application.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\Grupo B\Documents\projectv2\Plataforma-de-Reclutamiento-ATS---Kanban-Board-\RecruitmentATS\src\RecruitmentATS.Application\obj\Debug\net10.0\RecruitmentATS.Application.AssemblyInfoInputs.cache
-C:\Users\Grupo B\Documents\projectv2\Plataforma-de-Reclutamiento-ATS---Kanban-Board-\RecruitmentATS\src\RecruitmentATS.Application\obj\Debug\net10.0\RecruitmentATS.Application.AssemblyInfo.cs
-C:\Users\Grupo B\Documents\projectv2\Plataforma-de-Reclutamiento-ATS---Kanban-Board-\RecruitmentATS\src\RecruitmentATS.Application\obj\Debug\net10.0\RecruitmentATS.Application.csproj.CoreCompileInputs.cache
-C:\Users\Grupo B\Documents\projectv2\Plataforma-de-Reclutamiento-ATS---Kanban-Board-\RecruitmentATS\src\RecruitmentATS.Application\obj\Debug\net10.0\RecruitmentATS.Application.sourcelink.json
