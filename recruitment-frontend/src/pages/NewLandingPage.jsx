@@ -55,7 +55,7 @@ function JobCardNew({ job, onClick }) {
         display: 'flex',
         flexDirection: 'column',
         gap: '10px',
-        minHeight: '260px',
+        height: '320px',
       }}
     >
       {/* Title row */}
@@ -170,19 +170,25 @@ function JobCardNew({ job, onClick }) {
       {/* Divider */}
       <div style={{ height: '1px', background: hovered ? '#334' : '#D2D1D1', margin: '4px 0' }} />
 
-      {/* Description */}
-      <p
-        style={{
-          color: hovered ? '#ccd' : '#222',
-          fontFamily: 'sans-serif',
-          fontSize: '13px',
-          lineHeight: '1.5',
-          flex: 1,
-          margin: 0,
-        }}
-      >
-        {job.description}
-      </p>
+      {/* Description - fixed height area */}
+      <div style={{ flex: 1, overflow: 'hidden' }}>
+        <p
+          style={{
+            color: hovered ? '#ccd' : '#222',
+            fontFamily: 'sans-serif',
+            fontSize: '13px',
+            lineHeight: '1.5',
+            margin: 0,
+            display: '-webkit-box',
+            WebkitLineClamp: 3,
+            WebkitBoxOrient: 'vertical',
+            overflow: 'hidden',
+            textOverflow: 'ellipsis',
+          }}
+        >
+          {job.description}
+        </p>
+      </div>
 
       {/* CTA */}
       <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
@@ -363,7 +369,7 @@ export default function NewLandingPage() {
           .divider-location { display: none !important; }
           .filter-label { display: none !important; }
           .job-grid { gap: 16px !important; }
-          .job-card { min-height: 240px !important; padding: 16px 14px 12px !important; }
+          .job-card { height: 300px !important; padding: 16px 14px 12px !important; }
           .pagination-controls { gap: 6px !important; }
           .page-button { width: 28px !important; height: 28px !important; font-size: 12px !important; }
           .nav-button { padding: 6px 12px !important; font-size: 12px !important; }
@@ -383,7 +389,7 @@ export default function NewLandingPage() {
           .filter-section { padding: 12px 12px !important; gap: 8px !important; }
           .filter-button { padding: 4px 12px !important; font-size: 12px !important; }
           .job-grid { gap: 12px !important; grid-template-columns: 1fr !important; }
-          .job-card { min-height: 220px !important; padding: 14px 12px 10px !important; }
+          .job-card { height: 280px !important; padding: 14px 12px 10px !important; }
           .pagination-controls { flex-wrap: wrap !important; gap: 4px !important; }
           .page-button { width: 24px !important; height: 24px !important; font-size: 11px !important; padding: 2px !important; }
           .nav-button { padding: 4px 8px !important; font-size: 11px !important; }
