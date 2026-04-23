@@ -8,7 +8,8 @@ const AdminPostulacionesPage = () => {
 
   useEffect(() => {
     getPostulaciones()
-      .then(setPostulaciones)
+      .then((res) => setPostulaciones(res.data))
+      .catch((err) => console.error('Error loading postulaciones:', err))
       .finally(() => setLoading(false));
   }, []);
 

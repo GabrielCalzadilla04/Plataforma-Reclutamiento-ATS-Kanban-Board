@@ -1,8 +1,21 @@
 import API from './axiosInstance';
+import { mockVacantes, delay } from './mockData';
 
-export const getVacantes = () => API.get('/vacantes');
+// Using mock data instead of API calls for development
+export const getVacantes = async () => {
+  await delay(500); // Simulate network delay
+  return {
+    data: mockVacantes
+  };
+};
 
-export const getVacanteById = (id) => API.get(`/vacantes/${id}`);
+export const getVacanteById = async (id) => {
+  await delay(300);
+  const vacante = mockVacantes.find(v => v.id === id);
+  return {
+    data: vacante || null
+  };
+};
 
 export const createVacante = (data) => API.post('/vacantes', data);
 
