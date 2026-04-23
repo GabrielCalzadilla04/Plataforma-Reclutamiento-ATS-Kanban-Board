@@ -286,6 +286,11 @@ function LoginForm({ onSwitch, error, loading, onSubmit }) {
       }}
     >
       <div className="flex flex-col items-center mb-8">
+        <img 
+          src="/images/logotalentifysv.png" 
+          alt="Talentify SV Logo" 
+          className="h-20 w-auto mb-4"
+        />
         <h1
           className="text-3xl font-bold mt-3"
           style={{ color: '#0f1b3d', fontFamily: "'Playwrite IE', serif" }}
@@ -444,7 +449,12 @@ function RegisterForm({ onSwitch, error, loading, onSubmit }) {
         transition: 'all 0.5s cubic-bezier(0.16, 1, 0.3, 1)',
       }}
     >
-      <div className="flex items-center gap-3 mb-6">
+      <div className="flex flex-col items-center gap-3 mb-6">
+        <img 
+          src="/images/logotalentifysv.png" 
+          alt="Talentify SV Logo" 
+          className="h-16 w-auto"
+        />
         <h1
           className="text-2xl font-bold"
           style={{ color: '#0f1b3d', fontFamily: "'Playfair Display', serif" }}
