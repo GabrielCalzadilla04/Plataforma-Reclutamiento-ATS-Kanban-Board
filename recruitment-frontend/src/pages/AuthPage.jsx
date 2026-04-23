@@ -569,16 +569,36 @@ export default function AuthPage() {
   const handleLogin = async ({ email, password }) => {
     setError('');
     setLoading(true);
-    try {
-      const res = await loginUser({ email, password });
-      login(res.data);
-      const role = res.data.rol;
-      navigate(role === 'Administrador' || role === 'Manager' ? '/admin/vacantes' : '/');
-    } catch (err) {
-      setError(err.response?.data?.message || 'Error al iniciar sesión.');
-    } finally {
+    
+    // === MOCK: Simulacion del login (comentar cuando el backend este disponible) ===
+    setTimeout(() => {
+      // Simular datos de usuario con rol Administrador para acceso completo
+      const mockUserData = {
+        id: Date.now(),
+        nombre: 'Usuario',
+        apellido: 'Demo',
+        email: email,
+        rol: 'Administrador', // Rol admin para desbloquear rutas protegidas (Kanban, Usuarios)
+        token: 'mock-jwt-token-' + Date.now(),
+      };
+      
       setLoading(false);
-    }
+      setError(''); // Limpiar cualquier error previo
+      login(mockUserData);
+      navigate('/admin/vacantes'); // Redirigir al panel de admin
+    }, 1500);
+    
+    // === API REAL: Descomentar cuando el backend este disponible ===
+    // try {
+    //   const res = await loginUser({ email, password });
+    //   login(res.data);
+    //   const role = res.data.rol;
+    //   navigate(role === 'Administrador' || role === 'Manager' ? '/admin/vacantes' : '/');
+    // } catch (err) {
+    //   setError(err.response?.data?.message || 'Error al iniciar sesión.');
+    // } finally {
+    //   setLoading(false);
+    // }
   };
 
   const handleRegister = async (form) => {
@@ -586,22 +606,23 @@ export default function AuthPage() {
     setLoading(true);
     
     // === MOCK: Simulacion del registro (comentar cuando el backend este disponible) ===
+    // Cambiar rol a 'General' para usuarios normales cuando el backend este disponible
     setTimeout(() => {
-      // Simular datos de usuario registrado
+      // Simular datos de usuario registrado con rol Administrador para acceso completo
       const mockUserData = {
         id: Date.now(),
         nombre: form.nombre,
         apellido: form.apellido,
         email: form.email,
         carrera: form.carrera || null,
-        rol: 'General',
+        rol: 'Administrador', // Rol admin para desbloquear rutas protegidas (Kanban, Usuarios)
         token: 'mock-jwt-token-' + Date.now(),
       };
       
       setLoading(false);
       setError(''); // Limpiar cualquier error previo
       login(mockUserData);
-      navigate('/');
+      navigate('/admin/vacantes'); // Redirigir al panel de admin
     }, 1500);
     
     // === API REAL: Descomentar cuando el backend este disponible ===
