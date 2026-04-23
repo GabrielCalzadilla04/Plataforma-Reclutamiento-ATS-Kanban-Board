@@ -584,22 +584,43 @@ export default function AuthPage() {
   const handleRegister = async (form) => {
     setError('');
     setLoading(true);
-    try {
-      const res = await registerUser({
+    
+    // === MOCK: Simulacion del registro (comentar cuando el backend este disponible) ===
+    setTimeout(() => {
+      // Simular datos de usuario registrado
+      const mockUserData = {
+        id: Date.now(),
         nombre: form.nombre,
         apellido: form.apellido,
         email: form.email,
-        password: form.password,
         carrera: form.carrera || null,
         rol: 'General',
-      });
-      login(res.data);
-      navigate('/');
-    } catch (err) {
-      setError(err.response?.data?.message || 'Error al registrarse.');
-    } finally {
+        token: 'mock-jwt-token-' + Date.now(),
+      };
+      
       setLoading(false);
-    }
+      setError(''); // Limpiar cualquier error previo
+      login(mockUserData);
+      navigate('/');
+    }, 1500);
+    
+    // === API REAL: Descomentar cuando el backend este disponible ===
+    // try {
+    //   const res = await registerUser({
+    //     nombre: form.nombre,
+    //     apellido: form.apellido,
+    //     email: form.email,
+    //     password: form.password,
+    //     carrera: form.carrera || null,
+    //     rol: 'General',
+    //   });
+    //   login(res.data);
+    //   navigate('/');
+    // } catch (err) {
+    //   setError(err.response?.data?.message || 'Error al registrarse.');
+    // } finally {
+    //   setLoading(false);
+    // }
   };
 
   return (
