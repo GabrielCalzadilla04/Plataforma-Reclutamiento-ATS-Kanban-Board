@@ -589,7 +589,7 @@ em { font-style: italic; color: var(--clr-accent); }
   font-family: var(--ff-body);
   display: flex;
   flex-direction: column;
-  min-height: 420px;
+  height: 100%;
 }
 
 .job-card::before {
@@ -733,10 +733,10 @@ em { font-style: italic; color: var(--clr-accent); }
   line-height: 1.6;
   margin: 14px 0;
   display: -webkit-box;
-  -webkit-line-clamp: 2;
+  -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
-  min-height: 51.2px;
+  flex: 1;
 }
 
 .job-card__footer {
