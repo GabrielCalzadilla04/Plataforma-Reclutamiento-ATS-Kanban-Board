@@ -586,6 +586,9 @@ em { font-style: italic; color: var(--clr-accent); }
   overflow: hidden;
   animation: tb-fadeUp 0.5s ease both;
   font-family: var(--ff-body);
+  display: flex;
+  flex-direction: column;
+  min-height: 420px;
 }
 
 .job-card::before {
@@ -731,7 +734,7 @@ em { font-style: italic; color: var(--clr-accent); }
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-top: 16px;
+  margin-top: auto;
   padding-top: 16px;
   border-top: 1px solid var(--clr-surface-2);
 }
