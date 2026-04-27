@@ -395,6 +395,23 @@ export default function NewLandingPage() {
           .nav-button { padding: 4px 8px !important; font-size: 11px !important; }
           .page-info { font-size: 12px !important; }
         }
+
+        @media (max-width: 360px) {
+          .hero-section { padding: 32px 10px 24px !important; }
+          .hero-eyebrow { font-size: 10px !important; }
+          .hero-title { font-size: 20px !important; }
+          .hero-subtitle { font-size: 20px !important; }
+          .hero-description { font-size: 12px !important; }
+          .search-bar { border-radius: 6px !important; margin: 0 -2px !important; }
+          .search-input { padding: 8px 8px !important; font-size: 12px !important; }
+          .search-select { padding: 8px 8px !important; font-size: 11px !important; }
+          .search-button { padding: 8px 10px !important; font-size: 11px !important; }
+          .jobs-section { padding: 24px 8px 32px !important; }
+          .filter-section { padding: 10px 8px !important; gap: 6px !important; }
+          .filter-button { padding: 3px 8px !important; font-size: 11px !important; }
+          .job-grid { gap: 10px !important; }
+          .job-card { height: auto !important; min-height: 240px !important; padding: 12px 10px 10px !important; }
+        }
       `}</style>
 
       {/* HERO */}

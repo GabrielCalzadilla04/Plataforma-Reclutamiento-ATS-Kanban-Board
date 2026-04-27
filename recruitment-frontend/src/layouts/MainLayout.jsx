@@ -17,14 +17,14 @@ export default function MainLayout() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gray-50 overflow-x-hidden">
       <nav style={{
         background: 'linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(250,248,255,0.92) 100%)',
         borderBottom: '1px solid rgba(205,123,79,0.15)',
         boxShadow: '0 2px 8px rgba(19,25,49,0.06)',
         backdropFilter: 'blur(12px)',
       }}>
-        <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+        <div className="max-w-7xl mx-auto px-3 sm:px-6 py-3 sm:py-4 flex items-center justify-between flex-wrap gap-2">
           <Link to="/" style={{
             display: 'flex',
             alignItems: 'center',
@@ -172,7 +172,7 @@ export default function MainLayout() {
         </div>
       </nav>
 
-      <main className="max-w-7xl mx-auto px-4 py-8">
+      <main className="max-w-7xl mx-auto px-2 sm:px-4 py-4 sm:py-8 overflow-x-hidden">
         <Outlet />
       </main>
     </div>
