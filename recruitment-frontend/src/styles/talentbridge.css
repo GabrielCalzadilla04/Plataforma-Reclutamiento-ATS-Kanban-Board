@@ -151,6 +151,14 @@ em { font-style: italic; color: var(--clr-accent); }
   box-shadow: 0 4px 12px rgba(205,123,79,0.2);
 }
 
+.navbar__logo-img {
+  height: 48px;
+  width: auto;
+  object-fit: contain;
+  display: block;
+  flex-shrink: 0;
+}
+
 .logo-icon {
   font-family: var(--ff-display);
   font-size: 0.85rem;
@@ -1320,6 +1328,7 @@ em { font-style: italic; color: var(--clr-accent); }
 @media (max-width: 768px) {
   .navbar { padding: 0 20px; gap: 16px; }
   .navbar__links { display: none; }
+  .navbar__logo-img { height: 40px; }
   .hero { padding: 56px 20px 40px; }
   .hero__search { flex-direction: column; }
   .hero__stats { gap: 18px; }
@@ -1336,6 +1345,7 @@ em { font-style: italic; color: var(--clr-accent); }
   .navbar { padding: 0 12px; gap: 8px; height: auto; min-height: 60px; flex-wrap: wrap; }
   .navbar__name { font-size: 1rem; }
   .navbar__logo { width: 32px; height: 32px; }
+  .navbar__logo-img { height: 36px; }
   .hero { padding: 40px 12px 32px; }
   .hero__title { font-size: 1.6rem !important; }
   .hero__subtitle { font-size: 0.9rem; }
