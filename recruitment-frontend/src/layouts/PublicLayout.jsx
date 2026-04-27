@@ -30,7 +30,6 @@ export default function PublicLayout() {
             src="/images/logotalentifysv.png"
             alt="Talentify sv Logo"
             className="navbar__logo-img"
-            style={{ height: '48px', width: 'auto' }}
           />
           <span className="navbar__name">Talentify sv</span>
         </div>
