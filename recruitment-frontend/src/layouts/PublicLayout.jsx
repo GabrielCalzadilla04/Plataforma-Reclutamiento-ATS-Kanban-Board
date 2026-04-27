@@ -34,13 +34,10 @@ export default function PublicLayout() {
           <span className="navbar__name">Talentify sv</span>
         </div>
 
-        <nav className="navbar__links">
-          <Link to="/" className="nav-link">Inicio</Link>
-        </nav>
-
         <div className="navbar__actions">
           {isAuthenticated ? (
             <>
+              <Link to="/" className="nav-link">Inicio</Link>
               <span className="navbar__user-name">
                 {user?.nombre} {user?.apellido}
               </span>
