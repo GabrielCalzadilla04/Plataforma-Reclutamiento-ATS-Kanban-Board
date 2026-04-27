@@ -234,6 +234,9 @@ export default function NewLandingPage() {
   const [selectedJob, setSelectedJob] = useState(null);
   const [applyJob, setApplyJob] = useState(null);
   const [successMsg, setSuccessMsg] = useState('');
+  
+  // Responsive detection
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 680);
 
   // Pagination settings
   const ITEMS_PER_PAGE = PAGE_SIZES.LANDING;
@@ -272,6 +275,13 @@ export default function NewLandingPage() {
     }, 100);
     return () => clearTimeout(timer);
   }, [location.hash]);
+
+  // Detect screen resize for responsive styles
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth <= 680);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   // Auto-dismiss success banner after 5s
   useEffect(() => {
@@ -362,10 +372,32 @@ export default function NewLandingPage() {
           .hero-title { font-size: 28px !important; }
           .hero-subtitle { font-size: 28px !important; }
           .hero-description { font-size: 15px !important; max-width: 100% !important; }
-          .search-bar { flex-direction: column !important; gap: 0 !important; }
-          .search-input { font-size: 14px !important; padding: 12px 12px !important; border-radius: 10px 10px 0 0 !important; }
-          .search-select { font-size: 13px !important; padding: 12px 12px !important; width: 100% !important; border-radius: 0 !important; }
-          .search-button { width: 100% !important; padding: 12px 12px !important; font-size: 13px !important; border-radius: 0 0 10px 10px !important; }
+          .search-bar { 
+            flex-direction: column !important; 
+            gap: 0 !important; 
+            border-radius: 12px !important;
+            overflow: hidden !important;
+          }
+          .search-input { 
+            font-size: 14px !important; 
+            padding: 14px 14px !important; 
+            border-radius: 0 !important;
+            border-bottom: 1px solid rgba(255,255,255,0.1) !important;
+          }
+          .search-select { 
+            font-size: 13px !important; 
+            padding: 14px 14px !important; 
+            width: 100% !important; 
+            border-radius: 0 !important;
+            border-bottom: 1px solid rgba(255,255,255,0.1) !important;
+          }
+          .search-button { 
+            width: 100% !important; 
+            padding: 14px 14px !important; 
+            font-size: 14px !important; 
+            border-radius: 0 !important;
+            font-weight: 600 !important;
+          }
           .divider-location { display: none !important; }
           .filter-label { display: none !important; }
           .job-grid { gap: 16px !important; }
@@ -381,10 +413,10 @@ export default function NewLandingPage() {
           .hero-title { font-size: 24px !important; }
           .hero-subtitle { font-size: 24px !important; }
           .hero-description { font-size: 13px !important; }
-          .search-bar { border-radius: 8px !important; }
-          .search-input { padding: 10px 10px !important; font-size: 13px !important; }
-          .search-select { padding: 10px 10px !important; font-size: 12px !important; }
-          .search-button { padding: 10px 12px !important; font-size: 12px !important; }
+          .search-bar { border-radius: 10px !important; }
+          .search-input { padding: 12px 12px !important; font-size: 13px !important; }
+          .search-select { padding: 12px 12px !important; font-size: 12px !important; }
+          .search-button { padding: 12px 12px !important; font-size: 13px !important; }
           .jobs-section { padding: 32px 12px 40px !important; }
           .filter-section { padding: 12px 12px !important; gap: 8px !important; }
           .filter-button { padding: 4px 12px !important; font-size: 12px !important; }
@@ -394,6 +426,23 @@ export default function NewLandingPage() {
           .page-button { width: 24px !important; height: 24px !important; font-size: 11px !important; padding: 2px !important; }
           .nav-button { padding: 4px 8px !important; font-size: 11px !important; }
           .page-info { font-size: 12px !important; }
+        }
+
+        @media (max-width: 360px) {
+          .hero-section { padding: 32px 10px 24px !important; }
+          .hero-eyebrow { font-size: 10px !important; }
+          .hero-title { font-size: 20px !important; }
+          .hero-subtitle { font-size: 20px !important; }
+          .hero-description { font-size: 12px !important; }
+          .search-bar { border-radius: 8px !important; margin: 0 !important; }
+          .search-input { padding: 10px 10px !important; font-size: 12px !important; }
+          .search-select { padding: 10px 10px !important; font-size: 11px !important; }
+          .search-button { padding: 10px 10px !important; font-size: 12px !important; }
+          .jobs-section { padding: 24px 8px 32px !important; }
+          .filter-section { padding: 10px 8px !important; gap: 6px !important; }
+          .filter-button { padding: 3px 8px !important; font-size: 11px !important; }
+          .job-grid { gap: 10px !important; }
+          .job-card { height: auto !important; min-height: 240px !important; padding: 12px 10px 10px !important; }
         }
       `}</style>
 
@@ -492,12 +541,13 @@ export default function NewLandingPage() {
           className="search-bar"
           style={{
             display: 'flex',
-            alignItems: 'center',
+            flexDirection: isMobile ? 'column' : 'row',
+            alignItems: isMobile ? 'stretch' : 'center',
             gap: '0',
             maxWidth: '900px',
             margin: '0 auto',
             background: 'rgba(217,217,217,0.12)',
-            borderRadius: '10px',
+            borderRadius: '12px',
             overflow: 'hidden',
             animation: 'fadeUp 0.7s 0.3s ease both',
           }}
@@ -509,31 +559,35 @@ export default function NewLandingPage() {
             onChange={(e) => setSearchQuery(e.target.value)}
             placeholder="Puesto, ubicación, requisito..."
             style={{
-              flex: 1,
+              flex: isMobile ? 'none' : 1,
               background: 'transparent',
               border: 'none',
+              borderBottom: isMobile ? '1px solid rgba(255,255,255,0.15)' : 'none',
               outline: 'none',
               color: '#fff',
               fontFamily: 'sans-serif',
-              fontSize: '15px',
-              padding: '16px 18px',
+              fontSize: isMobile ? '14px' : '15px',
+              padding: isMobile ? '14px 16px' : '16px 18px',
             }}
           />
-          <div className="divider-location" style={{ width: '1px', height: '30px', background: 'rgba(255,255,255,0.2)' }} />
+          {!isMobile && (
+            <div className="divider-location" style={{ width: '1px', height: '30px', background: 'rgba(255,255,255,0.2)' }} />
+          )}
           <select
             className="search-select"
             value={locationFilter}
             onChange={(e) => setLocationFilter(e.target.value)}
             style={{
-              width: '200px',
+              width: isMobile ? '100%' : '200px',
               background: 'transparent',
               border: 'none',
+              borderBottom: isMobile ? '1px solid rgba(255,255,255,0.15)' : 'none',
               outline: 'none',
               color: '#fff',
               fontFamily: 'sans-serif',
               fontWeight: 600,
-              fontSize: '15px',
-              padding: '16px 14px',
+              fontSize: isMobile ? '13px' : '15px',
+              padding: isMobile ? '14px 16px' : '16px 14px',
               cursor: 'pointer',
             }}
           >
@@ -549,13 +603,14 @@ export default function NewLandingPage() {
             style={{
               background: '#CD7B4F',
               border: 'none',
-              padding: '16px 24px',
+              padding: isMobile ? '14px 16px' : '16px 24px',
               color: '#fff',
               fontFamily: 'sans-serif',
-              fontSize: '15px',
+              fontSize: isMobile ? '14px' : '15px',
               fontWeight: 700,
               cursor: 'pointer',
               transition: 'background 0.2s',
+              width: isMobile ? '100%' : 'auto',
             }}
             onMouseEnter={(e) => (e.target.style.background = '#b5673d')}
             onMouseLeave={(e) => (e.target.style.background = '#CD7B4F')}

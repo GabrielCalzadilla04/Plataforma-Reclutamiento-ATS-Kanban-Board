@@ -100,20 +100,20 @@ export default function KanbanAllPage() {
   );
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#faf8ff] to-[#eaedff]">
-      <div className="max-w-[1600px] mx-auto px-6 py-10">
+    <div className="min-h-screen bg-gradient-to-br from-[#faf8ff] to-[#eaedff] overflow-x-hidden">
+      <div className="max-w-[1600px] mx-auto px-3 sm:px-6 py-6 sm:py-10">
         {/* Header */}
-        <div className="mb-10">
+        <div className="mb-6 sm:mb-10">
           <Breadcrumb
             items={[
               { label: 'Administración' },
               { label: 'Pipeline de Candidatos' },
             ]}
           />
-          <h1 className="text-4xl md:text-4xl font-extrabold text-[#131b2e] tracking-tight mb-3">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-[#131b2e] tracking-tight mb-2 sm:mb-3">
             Pipeline de Candidatos
           </h1>
-          <p className="text-[#464555] max-w-2xl">
+          <p className="text-[#464555] max-w-2xl text-sm sm:text-base">
             Vista operacional en tiempo real de todos los candidatos en el proceso de selección.
             Arrastra tarjetas para cambiar el estado de los candidatos.
           </p>
@@ -123,22 +123,22 @@ export default function KanbanAllPage() {
         <CommandBar filters={filters} setFilters={setFilters} vacantes={vacantes} />
 
         {/* Pipeline Summary */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
+        <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-2 sm:gap-4 mb-6 sm:mb-8">
           {stageCounts.map(({ estado, label, color, count }) => (
             <div
               key={estado}
-              className="bg-white rounded-xl shadow-sm p-5 border border-[#c7c4d8]/10"
+              className="bg-white rounded-lg sm:rounded-xl shadow-sm p-3 sm:p-5 border border-[#c7c4d8]/10"
             >
-              <div className="flex items-center gap-3">
+              <div className="flex items-center gap-2 sm:gap-3">
                 <div
-                  className="w-3 h-3 rounded-full"
+                  className="w-2 h-2 sm:w-3 sm:h-3 rounded-full flex-shrink-0"
                   style={{ backgroundColor: color }}
                 />
-                <div>
-                  <p className="text-xs font-semibold uppercase tracking-widest text-[#464555]">
+                <div className="min-w-0">
+                  <p className="text-[10px] sm:text-xs font-semibold uppercase tracking-wider sm:tracking-widest text-[#464555] truncate">
                     {label}
                   </p>
-                  <p className="text-2xl font-black text-[#131b2e] mt-1">{count}</p>
+                  <p className="text-lg sm:text-2xl font-black text-[#131b2e] mt-0.5 sm:mt-1">{count}</p>
                 </div>
               </div>
             </div>
@@ -146,7 +146,7 @@ export default function KanbanAllPage() {
         </div>
 
         {/* Kanban Board */}
-        <div className="bg-white rounded-2xl shadow-sm p-8">
+        <div className="bg-white rounded-xl sm:rounded-2xl shadow-sm p-3 sm:p-6 md:p-8 overflow-x-auto">
           <KanbanBoard
             filterFn={filterFn}
             sortFn={sortFn}

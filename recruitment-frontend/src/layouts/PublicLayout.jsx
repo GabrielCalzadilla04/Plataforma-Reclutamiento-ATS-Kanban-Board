@@ -30,18 +30,14 @@ export default function PublicLayout() {
             src="/images/logotalentifysv.png"
             alt="Talentify sv Logo"
             className="navbar__logo-img"
-            style={{ height: '48px', width: 'auto' }}
           />
           <span className="navbar__name">Talentify sv</span>
         </div>
 
-        <nav className="navbar__links">
-          <Link to="/" className="nav-link">Inicio</Link>
-        </nav>
-
         <div className="navbar__actions">
           {isAuthenticated ? (
             <>
+              <Link to="/" className="nav-link">Inicio</Link>
               <span className="navbar__user-name">
                 {user?.nombre} {user?.apellido}
               </span>
