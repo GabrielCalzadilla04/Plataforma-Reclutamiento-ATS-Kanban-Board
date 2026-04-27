@@ -283,12 +283,14 @@ em { font-style: italic; color: var(--clr-accent); }
 }
 
 .navbar__user-name {
-  font-size: 0.7rem;
+  font-size: 0.65rem;
   font-weight: 600;
   color: #131931;
-  letter-spacing: 0.2px;
+  letter-spacing: 0.1px;
   padding: 0 2px;
-  white-space: nowrap;
+  max-width: 45px;
+  text-align: center;
+  line-height: 1.2;
 }
 
 .navbar__logout-btn {
