@@ -191,8 +191,8 @@ export default function AdminVacantesPage() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#faf8ff] to-[#eaedff]">
       {/* Header Section */}
-      <div className="max-w-[1200px] mx-auto px-6 py-10">
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
+      <div className="max-w-[1200px] mx-auto px-3 sm:px-6 py-6 sm:py-10">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 sm:gap-6 mb-8 sm:mb-12">
           <div>
             <Breadcrumb
               items={[
@@ -200,10 +200,10 @@ export default function AdminVacantesPage() {
                 { label: 'Vacantes' },
               ]}
             />
-            <h1 className="text-4xl md:text-4xl font-extrabold text-[#131b2e] tracking-tight mb-2">
+            <h1 className="text-2xl sm:text-4xl font-extrabold text-[#131b2e] tracking-tight mb-1 sm:mb-2">
               Vacantes
             </h1>
-            <p className="text-[#464555]">
+            <p className="text-[#464555] text-sm sm:text-base">
               Gestiona y supervisa {activeCount} posiciones activas en tu organización.
             </p>
           </div>
@@ -222,48 +222,48 @@ export default function AdminVacantesPage() {
         </div>
 
         {/* Stats Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-12">
-          <div className="bg-white p-6 rounded-2xl border-none shadow-sm flex flex-col justify-between">
-            <span className="text-[#464555] text-xs font-semibold uppercase tracking-wider">
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-4 mb-8 sm:mb-12">
+          <div className="bg-white p-3 sm:p-6 rounded-xl sm:rounded-2xl border-none shadow-sm flex flex-col justify-between">
+            <span className="text-[#464555] text-[10px] sm:text-xs font-semibold uppercase tracking-wider">
               Total Activas
             </span>
-            <div className="flex items-baseline gap-2 mt-2">
-              <span className="text-3xl font-black text-[#131b2e]">{activeCount}</span>
-              <span className="text-xs text-green-600 font-bold">
+            <div className="flex items-baseline gap-1 sm:gap-2 mt-1 sm:mt-2">
+              <span className="text-xl sm:text-3xl font-black text-[#131b2e]">{activeCount}</span>
+              <span className="text-[10px] sm:text-xs text-green-600 font-bold">
                 de {vacantes.length}
               </span>
             </div>
           </div>
 
-          <div className="bg-white p-6 rounded-2xl border-none shadow-sm">
-            <span className="text-[#464555] text-xs font-semibold uppercase tracking-wider">
+          <div className="bg-white p-3 sm:p-6 rounded-xl sm:rounded-2xl border-none shadow-sm">
+            <span className="text-[#464555] text-[10px] sm:text-xs font-semibold uppercase tracking-wider">
               Postulaciones
             </span>
-            <div className="flex items-baseline gap-2 mt-2">
-              <span className="text-3xl font-black text-[#131b2e]">{totalApplicants}</span>
+            <div className="flex items-baseline gap-1 sm:gap-2 mt-1 sm:mt-2">
+              <span className="text-xl sm:text-3xl font-black text-[#131b2e]">{totalApplicants}</span>
               <span className="text-[#3525cd]">↑</span>
             </div>
           </div>
 
-          <div className="bg-white p-6 rounded-2xl border-none shadow-sm">
-            <span className="text-[#464555] text-xs font-semibold uppercase tracking-wider">
+          <div className="bg-white p-3 sm:p-6 rounded-xl sm:rounded-2xl border-none shadow-sm">
+            <span className="text-[#464555] text-[10px] sm:text-xs font-semibold uppercase tracking-wider">
               Promedio
             </span>
-            <div className="flex items-baseline gap-2 mt-2">
-              <span className="text-3xl font-black text-[#131b2e]">
+            <div className="flex items-baseline gap-1 sm:gap-2 mt-1 sm:mt-2">
+              <span className="text-xl sm:text-3xl font-black text-[#131b2e]">
                 {vacantes.length > 0 ? Math.round(totalApplicants / vacantes.length) : 0}
               </span>
-              <span className="text-xs text-[#464555]">por vacante</span>
+              <span className="text-[10px] sm:text-xs text-[#464555]">por vacante</span>
             </div>
           </div>
 
-          <div className="bg-gradient-to-br from-[#3525cd] to-[#4f46e5] text-white p-6 rounded-2xl border-none shadow-xl relative overflow-hidden">
+          <div className="bg-gradient-to-br from-[#3525cd] to-[#4f46e5] text-white p-3 sm:p-6 rounded-xl sm:rounded-2xl border-none shadow-xl relative overflow-hidden">
             <div className="relative z-10">
-              <span className="text-[#e2dfff] text-xs font-semibold uppercase tracking-wider">
+              <span className="text-[#e2dfff] text-[10px] sm:text-xs font-semibold uppercase tracking-wider">
                 Tasa Activas
               </span>
-              <div className="flex items-baseline gap-2 mt-2">
-                <span className="text-3xl font-black">
+              <div className="flex items-baseline gap-1 sm:gap-2 mt-1 sm:mt-2">
+                <span className="text-xl sm:text-3xl font-black">
                   {vacantes.length > 0
                     ? Math.round((activeCount / vacantes.length) * 100)
                     : 0}
@@ -536,23 +536,23 @@ export default function AdminVacantesPage() {
         )}
 
         {/* Data Table Container */}
-        <div className="bg-white rounded-3xl overflow-hidden shadow-sm">
-          <div className="px-6 py-4 flex items-center justify-between bg-[#f2f3ff]/50 border-b border-[#c7c4d8]/10">
-            <h3 className="font-bold text-[#131b2e]">Listado de Vacantes</h3>
-            <div className="flex items-center gap-2">
-              <div className="relative w-64">
+        <div className="bg-white rounded-2xl sm:rounded-3xl overflow-hidden shadow-sm">
+          <div className="px-3 sm:px-6 py-3 sm:py-4 flex flex-col sm:flex-row sm:items-center justify-between gap-2 sm:gap-4 bg-[#f2f3ff]/50 border-b border-[#c7c4d8]/10">
+            <h3 className="font-bold text-[#131b2e] text-sm sm:text-base whitespace-nowrap">Listado de Vacantes</h3>
+            <div className="flex items-center gap-2 w-full sm:w-auto">
+              <div className="relative flex-1 sm:flex-none sm:w-64">
                 <input
                   type="text"
-                  placeholder="Buscar por título, ubicación, requisito..."
+                  placeholder="Buscar por título, ubicación..."
                   value={searchQuery}
                   onChange={(e) => handleSearch(e.target.value)}
-                  className="w-full bg-white border border-[#c7c4d8] rounded-lg px-4 py-2 pl-10 text-sm focus:outline-none focus:ring-2 focus:ring-[#3525cd]/20 transition-all"
+                  className="w-full bg-white border border-[#c7c4d8] rounded-lg px-3 sm:px-4 py-1.5 sm:py-2 pl-8 sm:pl-10 text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-[#3525cd]/20 transition-all"
                 />
-                <span className="absolute left-3 top-1/2 -translate-y-1/2 text-[#464555]">
+                <span className="absolute left-2 sm:left-3 top-1/2 -translate-y-1/2 text-[#464555] text-xs sm:text-base">
                   🔍
                 </span>
               </div>
-              <button className="p-2 text-[#464555] hover:bg-[#eaedff] rounded-lg transition-colors">
+              <button className="p-1.5 sm:p-2 text-[#464555] hover:bg-[#eaedff] rounded-lg transition-colors flex-shrink-0">
                 ⬇
               </button>
             </div>
@@ -661,8 +661,8 @@ export default function AdminVacantesPage() {
 
           {/* Pagination */}
           {filteredVacantes.length > 0 && (
-            <div className="px-6 py-6 border-t border-[#c7c4d8]/10 flex items-center justify-between">
-              <span className="text-sm text-[#464555]">
+            <div className="px-3 sm:px-6 py-4 sm:py-6 border-t border-[#c7c4d8]/10 flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-0">
+              <span className="text-xs sm:text-sm text-[#464555] text-center sm:text-left">
                 Mostrando <span className="font-bold text-[#131b2e]">{startIndex + 1} - {Math.min(endIndex, filteredVacantes.length)}</span> de{' '}
                 <span className="font-bold text-[#131b2e]">{filteredVacantes.length}</span>
                 {searchQuery && ` (${vacantes.length} total)`}
