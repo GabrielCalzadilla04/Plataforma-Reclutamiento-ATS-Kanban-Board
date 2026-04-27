@@ -118,9 +118,11 @@ em { font-style: italic; color: var(--clr-accent); }
   z-index: 100;
   display: flex;
   align-items: center;
-  gap: 32px;
+  justify-content: space-between;
+  gap: 16px;
   padding: 0 40px;
   height: 68px;
+  width: 100%;
   background: linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(250,248,255,0.92) 100%);
   backdrop-filter: blur(12px);
   border-bottom: 1px solid rgba(205,123,79,0.15);
@@ -131,9 +133,9 @@ em { font-style: italic; color: var(--clr-accent); }
   display: flex;
   align-items: center;
   gap: 12px;
-  margin-right: auto;
   cursor: pointer;
   transition: opacity var(--transition);
+  flex-shrink: 0;
 }
 
 .navbar__brand:hover {
@@ -1326,9 +1328,12 @@ em { font-style: italic; color: var(--clr-accent); }
    [14] RESPONSIVE
 ============================================================ */
 @media (max-width: 768px) {
-  .navbar { padding: 0 20px; gap: 16px; }
+  .navbar { padding: 0 16px; gap: 12px; }
   .navbar__links { display: none; }
   .navbar__logo-img { height: 40px; }
+  .navbar__name { font-size: 1.1rem; }
+  .navbar__actions { gap: 8px; }
+  .navbar__actions .btn { padding: 8px 12px; font-size: 0.8rem; }
   .hero { padding: 56px 20px 40px; }
   .hero__search { flex-direction: column; }
   .hero__stats { gap: 18px; }
