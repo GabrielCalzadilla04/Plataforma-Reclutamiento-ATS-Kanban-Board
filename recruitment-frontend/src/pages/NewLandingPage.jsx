@@ -234,6 +234,9 @@ export default function NewLandingPage() {
   const [selectedJob, setSelectedJob] = useState(null);
   const [applyJob, setApplyJob] = useState(null);
   const [successMsg, setSuccessMsg] = useState('');
+  
+  // Responsive detection
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 680);
 
   // Pagination settings
   const ITEMS_PER_PAGE = PAGE_SIZES.LANDING;
@@ -272,6 +275,13 @@ export default function NewLandingPage() {
     }, 100);
     return () => clearTimeout(timer);
   }, [location.hash]);
+
+  // Detect screen resize for responsive styles
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth <= 680);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   // Auto-dismiss success banner after 5s
   useEffect(() => {
@@ -531,12 +541,13 @@ export default function NewLandingPage() {
           className="search-bar"
           style={{
             display: 'flex',
-            alignItems: 'center',
+            flexDirection: isMobile ? 'column' : 'row',
+            alignItems: isMobile ? 'stretch' : 'center',
             gap: '0',
             maxWidth: '900px',
             margin: '0 auto',
             background: 'rgba(217,217,217,0.12)',
-            borderRadius: '10px',
+            borderRadius: '12px',
             overflow: 'hidden',
             animation: 'fadeUp 0.7s 0.3s ease both',
           }}
@@ -548,31 +559,35 @@ export default function NewLandingPage() {
             onChange={(e) => setSearchQuery(e.target.value)}
             placeholder="Puesto, ubicación, requisito..."
             style={{
-              flex: 1,
+              flex: isMobile ? 'none' : 1,
               background: 'transparent',
               border: 'none',
+              borderBottom: isMobile ? '1px solid rgba(255,255,255,0.15)' : 'none',
               outline: 'none',
               color: '#fff',
               fontFamily: 'sans-serif',
-              fontSize: '15px',
-              padding: '16px 18px',
+              fontSize: isMobile ? '14px' : '15px',
+              padding: isMobile ? '14px 16px' : '16px 18px',
             }}
           />
-          <div className="divider-location" style={{ width: '1px', height: '30px', background: 'rgba(255,255,255,0.2)' }} />
+          {!isMobile && (
+            <div className="divider-location" style={{ width: '1px', height: '30px', background: 'rgba(255,255,255,0.2)' }} />
+          )}
           <select
             className="search-select"
             value={locationFilter}
             onChange={(e) => setLocationFilter(e.target.value)}
             style={{
-              width: '200px',
+              width: isMobile ? '100%' : '200px',
               background: 'transparent',
               border: 'none',
+              borderBottom: isMobile ? '1px solid rgba(255,255,255,0.15)' : 'none',
               outline: 'none',
               color: '#fff',
               fontFamily: 'sans-serif',
               fontWeight: 600,
-              fontSize: '15px',
-              padding: '16px 14px',
+              fontSize: isMobile ? '13px' : '15px',
+              padding: isMobile ? '14px 16px' : '16px 14px',
               cursor: 'pointer',
             }}
           >
@@ -588,13 +603,14 @@ export default function NewLandingPage() {
             style={{
               background: '#CD7B4F',
               border: 'none',
-              padding: '16px 24px',
+              padding: isMobile ? '14px 16px' : '16px 24px',
               color: '#fff',
               fontFamily: 'sans-serif',
-              fontSize: '15px',
+              fontSize: isMobile ? '14px' : '15px',
               fontWeight: 700,
               cursor: 'pointer',
               transition: 'background 0.2s',
+              width: isMobile ? '100%' : 'auto',
             }}
             onMouseEnter={(e) => (e.target.style.background = '#b5673d')}
             onMouseLeave={(e) => (e.target.style.background = '#CD7B4F')}
