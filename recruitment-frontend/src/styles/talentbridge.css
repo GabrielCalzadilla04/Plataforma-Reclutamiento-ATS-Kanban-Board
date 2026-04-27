@@ -157,7 +157,7 @@ em { font-style: italic; color: var(--clr-accent); }
 }
 
 .navbar__logo-img {
-  height: 28px;
+  height: 44px;
   width: auto;
   object-fit: contain;
   display: block;
@@ -174,10 +174,10 @@ em { font-style: italic; color: var(--clr-accent); }
 
 .navbar__name {
   font-family: var(--ff-display);
-  font-size: 0.85rem;
+  font-size: 1.25rem;
   font-weight: 700;
   color: #131931;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.01em;
   white-space: nowrap;
 }
 
@@ -224,11 +224,10 @@ em { font-style: italic; color: var(--clr-accent); }
 .navbar__actions {
   display: flex;
   align-items: center;
-  gap: 8px;
-  flex-shrink: 1;
+  gap: 14px;
+  flex-shrink: 0;
   flex-grow: 0;
   margin-left: auto;
-  min-width: 0;
 }
 
 .live-badge {
@@ -259,11 +258,11 @@ em { font-style: italic; color: var(--clr-accent); }
 .admin-link {
   display: inline-flex;
   align-items: center;
-  gap: 4px;
-  font-size: 0.7rem;
+  gap: 6px;
+  font-size: 0.85rem;
   font-weight: 700;
-  padding: 5px 10px;
-  border-radius: 6px;
+  padding: 8px 16px;
+  border-radius: 8px;
   background: linear-gradient(135deg, #131931 0%, #1F9DB9 100%);
   color: #fff;
   white-space: nowrap;
@@ -283,21 +282,19 @@ em { font-style: italic; color: var(--clr-accent); }
 }
 
 .navbar__user-name {
-  font-size: 0.65rem;
+  font-size: 0.9rem;
   font-weight: 600;
   color: #131931;
-  letter-spacing: 0.1px;
-  padding: 0 2px;
-  max-width: 45px;
-  text-align: center;
-  line-height: 1.2;
+  letter-spacing: 0.3px;
+  padding: 0 8px;
+  white-space: nowrap;
 }
 
 .navbar__logout-btn {
-  font-size: 0.7rem;
+  font-size: 0.85rem;
   font-weight: 700;
-  padding: 5px 10px;
-  border-radius: 6px;
+  padding: 8px 16px;
+  border-radius: 8px;
   background: #fff;
   color: #CD7B4F;
   border: 1.5px solid #CD7B4F;
@@ -1401,7 +1398,7 @@ em { font-style: italic; color: var(--clr-accent); }
   .btn--lg { padding: 10px 20px; font-size: 0.85rem; }
   .admin-link { padding: 6px 10px; font-size: 0.7rem; }
   .navbar__logout-btn { padding: 6px 10px; font-size: 0.7rem; }
-  .navbar__user-name { font-size: 0.75rem; padding: 0 2px; }
+  .navbar__user-name { font-size: 0.65rem; padding: 0 2px; max-width: 50px; text-align: center; line-height: 1.2; white-space: normal; }
 }
 
 /* Very small screens (320px) */
@@ -1415,5 +1412,5 @@ em { font-style: italic; color: var(--clr-accent); }
   .navbar__actions .btn--ghost { padding: 5px 6px; }
   .admin-link { padding: 5px 8px; font-size: 0.65rem; }
   .navbar__logout-btn { padding: 5px 8px; font-size: 0.65rem; }
-  .navbar__user-name { font-size: 0.7rem; max-width: 60px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .navbar__user-name { font-size: 0.6rem; max-width: 45px; text-align: center; line-height: 1.2; white-space: normal; }
 }
