@@ -40,22 +40,22 @@ export default function MainLayout() {
               alt="Talentify sv Logo"
               className="h-7 sm:h-10 w-auto rounded-lg"
             />
-            <span className="text-[#131931] text-sm sm:text-lg font-bold tracking-tight hidden sm:inline" style={{
+            <span className="text-[#131931] text-[0.7rem] sm:text-lg font-bold tracking-tight" style={{
               fontFamily: "'Playwrite IE', serif",
             }}>Talentify sv</span>
           </Link>
 
-          <div className="flex gap-2 sm:gap-4 items-center flex-wrap justify-end">
+          <div className="flex gap-1 sm:gap-4 items-center justify-end flex-nowrap">
             <Link
               to="/admin/vacantes"
-              className="text-[#131931] text-xs sm:text-sm font-semibold px-2 sm:px-3 py-1.5 rounded-md hover:text-[#CD7B4F] hover:bg-[rgba(205,123,79,0.08)] transition-all"
+              className="text-[#131931] text-[0.65rem] sm:text-sm font-semibold px-1 sm:px-3 py-1 rounded-md hover:text-[#CD7B4F] hover:bg-[rgba(205,123,79,0.08)] transition-all whitespace-nowrap"
             >
               Vacantes
             </Link>
 
             <Link
               to="/admin/kanban"
-              className="text-white text-xs sm:text-sm font-bold px-3 sm:px-4 py-1.5 sm:py-2 rounded-lg shadow-md hover:-translate-y-0.5 transition-all whitespace-nowrap"
+              className="text-white text-[0.65rem] sm:text-sm font-bold px-2 sm:px-4 py-1 sm:py-2 rounded-md sm:rounded-lg shadow-md hover:-translate-y-0.5 transition-all whitespace-nowrap"
               style={{
                 background: 'linear-gradient(135deg, #131931 0%, #1F9DB9 100%)',
               }}
@@ -66,19 +66,19 @@ export default function MainLayout() {
             {isAdmin && (
               <Link
                 to="/admin/usuarios"
-                className="text-[#131931] text-xs sm:text-sm font-semibold px-2 sm:px-3 py-1.5 rounded-md hover:text-[#CD7B4F] hover:bg-[rgba(205,123,79,0.08)] transition-all"
+                className="text-[#131931] text-[0.65rem] sm:text-sm font-semibold px-1 sm:px-3 py-1 rounded-md hover:text-[#CD7B4F] hover:bg-[rgba(205,123,79,0.08)] transition-all whitespace-nowrap"
               >
                 Usuarios
               </Link>
             )}
 
-            <span className="text-[#131931] text-xs sm:text-sm font-semibold pl-2 sm:pl-3 border-l border-[rgba(205,123,79,0.2)] whitespace-nowrap">
+            <span className="text-[#131931] text-[0.6rem] sm:text-sm font-semibold pl-1 sm:pl-3 border-l border-[rgba(205,123,79,0.2)] whitespace-nowrap">
               {user?.nombre}
             </span>
 
             <button
               onClick={handleLogout}
-              className="bg-white border border-[#CD7B4F] rounded-md px-2 sm:px-3 py-1 sm:py-1.5 text-xs sm:text-sm text-[#CD7B4F] font-bold cursor-pointer hover:bg-[rgba(205,123,79,0.08)] transition-all whitespace-nowrap"
+              className="bg-white border border-[#CD7B4F] rounded px-1.5 sm:px-3 py-0.5 sm:py-1.5 text-[0.6rem] sm:text-sm text-[#CD7B4F] font-bold cursor-pointer hover:bg-[rgba(205,123,79,0.08)] transition-all whitespace-nowrap"
             >
               Cerrar Sesión
             </button>
