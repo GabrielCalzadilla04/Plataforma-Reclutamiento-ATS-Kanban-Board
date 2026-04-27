@@ -134,7 +134,7 @@ em { font-style: italic; color: var(--clr-accent); }
 .navbar__brand {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 8px;
   cursor: pointer;
   transition: opacity var(--transition);
   flex-shrink: 0;
@@ -157,7 +157,7 @@ em { font-style: italic; color: var(--clr-accent); }
 }
 
 .navbar__logo-img {
-  height: 40px;
+  height: 32px;
   width: auto;
   object-fit: contain;
   display: block;
@@ -174,7 +174,7 @@ em { font-style: italic; color: var(--clr-accent); }
 
 .navbar__name {
   font-family: var(--ff-display);
-  font-size: 1.15rem;
+  font-size: 1rem;
   font-weight: 700;
   color: #131931;
   letter-spacing: -0.01em;
@@ -224,7 +224,7 @@ em { font-style: italic; color: var(--clr-accent); }
 .navbar__actions {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
   flex-shrink: 1;
   flex-grow: 0;
   margin-left: auto;
@@ -259,10 +259,10 @@ em { font-style: italic; color: var(--clr-accent); }
 .admin-link {
   display: inline-flex;
   align-items: center;
-  gap: 5px;
-  font-size: 0.75rem;
+  gap: 4px;
+  font-size: 0.7rem;
   font-weight: 700;
-  padding: 6px 12px;
+  padding: 5px 10px;
   border-radius: 6px;
   background: linear-gradient(135deg, #131931 0%, #1F9DB9 100%);
   color: #fff;
@@ -283,18 +283,18 @@ em { font-style: italic; color: var(--clr-accent); }
 }
 
 .navbar__user-name {
-  font-size: 0.8rem;
+  font-size: 0.7rem;
   font-weight: 600;
   color: #131931;
-  letter-spacing: 0.3px;
-  padding: 0 4px;
+  letter-spacing: 0.2px;
+  padding: 0 2px;
   white-space: nowrap;
 }
 
 .navbar__logout-btn {
-  font-size: 0.75rem;
+  font-size: 0.7rem;
   font-weight: 700;
-  padding: 6px 12px;
+  padding: 5px 10px;
   border-radius: 6px;
   background: #fff;
   color: #CD7B4F;
