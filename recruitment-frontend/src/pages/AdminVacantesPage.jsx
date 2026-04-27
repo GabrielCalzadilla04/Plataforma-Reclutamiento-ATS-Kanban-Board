@@ -571,92 +571,148 @@ export default function AdminVacantesPage() {
               <p className="text-sm mt-2">Intenta con otros términos de búsqueda</p>
             </div>
           ) : (
-            <div className="overflow-x-auto">
-              <table className="w-full text-left border-collapse">
-                <thead>
-                  <tr className="bg-[#f2f3ff]/30 border-b border-[#c7c4d8]/10">
-                    <th className="px-6 py-4 text-[10px] uppercase font-bold tracking-widest text-[#464555]">
-                      Título
-                    </th>
-                    <th className="px-6 py-4 text-[10px] uppercase font-bold tracking-widest text-[#464555]">
-                      Ubicación
-                    </th>
-                    <th className="px-6 py-4 text-[10px] uppercase font-bold tracking-widest text-[#464555]">
-                      Contrato
-                    </th>
-                    <th className="px-6 py-4 text-[10px] uppercase font-bold tracking-widest text-[#464555]">
-                      Salario
-                    </th>
-                    <th className="px-6 py-4 text-[10px] uppercase font-bold tracking-widest text-[#464555]">
-                      Postulaciones
-                    </th>
-                    {isAdmin && (
-                      <th className="px-6 py-4 text-[10px] uppercase font-bold tracking-widest text-[#464555] text-right">
-                        Acciones
-                      </th>
-                    )}
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-[#c7c4d8]/5">
-                  {paginatedVacantes.map((vacante) => (
-                    <tr
-                      key={vacante.id}
-                      onClick={() => navigate(`/admin/vacantes/${vacante.id}/aplicantes`)}
-                      className="hover:bg-[#f2f3ff]/20 transition-colors group cursor-pointer"
-                    >
-                      <td className="px-6 py-5">
-                        <div className="flex flex-col">
-                          <span className="font-semibold text-[#131b2e]">
-                            {vacante.titulo}
-                          </span>
-                          <span className="text-xs text-[#464555]">ID: #{formatId(vacante.id)}</span>
-                        </div>
-                      </td>
-                      <td className="px-6 py-5 text-sm text-[#464555]">
-                        {vacante.ubicacion}
-                      </td>
-                      <td className="px-6 py-5">
-                        <span className="px-3 py-1 text-[10px] font-bold uppercase bg-[#e2dfff] text-[#3525cd] rounded-full">
-                          {vacante.tipoContrato}
-                        </span>
-                      </td>
-                      <td className="px-6 py-5 text-sm font-medium text-[#131b2e]">
-                        {formatSalaryRange(vacante.salarioMin, vacante.salarioMax)}
-                      </td>
-                      <td className="px-6 py-5 text-sm font-medium text-[#131b2e]">
-                        {vacante.postulacionesCount || 0}
-                      </td>
+            <>
+              {/* Mobile Card View */}
+              <div className="block sm:hidden divide-y divide-[#c7c4d8]/10">
+                {paginatedVacantes.map((vacante) => (
+                  <div
+                    key={vacante.id}
+                    onClick={() => navigate(`/admin/vacantes/${vacante.id}/aplicantes`)}
+                    className="p-4 hover:bg-[#f2f3ff]/20 transition-colors cursor-pointer"
+                  >
+                    <div className="flex justify-between items-start mb-2">
+                      <div className="flex-1 min-w-0">
+                        <h4 className="font-semibold text-[#131b2e] text-sm truncate">{vacante.titulo}</h4>
+                        <p className="text-[10px] text-[#464555]">ID: #{formatId(vacante.id)}</p>
+                      </div>
+                      <span className="px-2 py-0.5 text-[9px] font-bold uppercase bg-[#e2dfff] text-[#3525cd] rounded-full ml-2 flex-shrink-0">
+                        {vacante.tipoContrato}
+                      </span>
+                    </div>
+                    <div className="grid grid-cols-2 gap-2 text-xs mt-3">
+                      <div>
+                        <span className="text-[#464555]">Ubicación: </span>
+                        <span className="text-[#131b2e] font-medium">{vacante.ubicacion}</span>
+                      </div>
+                      <div>
+                        <span className="text-[#464555]">Salario: </span>
+                        <span className="text-[#131b2e] font-medium">{formatSalaryRange(vacante.salarioMin, vacante.salarioMax)}</span>
+                      </div>
+                      <div>
+                        <span className="text-[#464555]">Postulaciones: </span>
+                        <span className="text-[#131b2e] font-medium">{vacante.postulacionesCount || 0}</span>
+                      </div>
                       {isAdmin && (
-                        <td className="px-6 py-5 text-right">
-                          <div className="flex justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
-                            <button
-                              onClick={(e) => {
-                                e.stopPropagation();
-                                handleEdit(vacante);
-                              }}
-                              className="p-2 hover:bg-[#eaedff] rounded-lg text-[#3525cd] transition-colors"
-                              title="Editar"
-                            >
-                              ✎
-                            </button>
-                            <button
-                              onClick={(e) => {
-                                e.stopPropagation();
-                                handleDelete(vacante.id);
-                              }}
-                              className="p-2 hover:bg-[#ffdad6] rounded-lg text-[#ba1a1a] transition-colors"
-                              title="Eliminar"
-                            >
-                              🗑
-                            </button>
-                          </div>
-                        </td>
+                        <div className="flex justify-end gap-1">
+                          <button
+                            onClick={(e) => { e.stopPropagation(); handleEdit(vacante); }}
+                            className="p-1.5 hover:bg-[#eaedff] rounded text-[#3525cd] transition-colors text-sm"
+                            title="Editar"
+                          >
+                            ✎
+                          </button>
+                          <button
+                            onClick={(e) => { e.stopPropagation(); handleDelete(vacante.id); }}
+                            className="p-1.5 hover:bg-[#ffdad6] rounded text-[#ba1a1a] transition-colors text-sm"
+                            title="Eliminar"
+                          >
+                            🗑
+                          </button>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              {/* Desktop Table View */}
+              <div className="hidden sm:block overflow-x-auto">
+                <table className="w-full text-left border-collapse">
+                  <thead>
+                    <tr className="bg-[#f2f3ff]/30 border-b border-[#c7c4d8]/10">
+                      <th className="px-4 py-3 text-[10px] uppercase font-bold tracking-widest text-[#464555]">
+                        Título
+                      </th>
+                      <th className="px-4 py-3 text-[10px] uppercase font-bold tracking-widest text-[#464555]">
+                        Ubicación
+                      </th>
+                      <th className="px-4 py-3 text-[10px] uppercase font-bold tracking-widest text-[#464555]">
+                        Contrato
+                      </th>
+                      <th className="px-4 py-3 text-[10px] uppercase font-bold tracking-widest text-[#464555]">
+                        Salario
+                      </th>
+                      <th className="px-4 py-3 text-[10px] uppercase font-bold tracking-widest text-[#464555]">
+                        Postulaciones
+                      </th>
+                      {isAdmin && (
+                        <th className="px-4 py-3 text-[10px] uppercase font-bold tracking-widest text-[#464555] text-right">
+                          Acciones
+                        </th>
                       )}
                     </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
+                  </thead>
+                  <tbody className="divide-y divide-[#c7c4d8]/5">
+                    {paginatedVacantes.map((vacante) => (
+                      <tr
+                        key={vacante.id}
+                        onClick={() => navigate(`/admin/vacantes/${vacante.id}/aplicantes`)}
+                        className="hover:bg-[#f2f3ff]/20 transition-colors group cursor-pointer"
+                      >
+                        <td className="px-4 py-4">
+                          <div className="flex flex-col">
+                            <span className="font-semibold text-[#131b2e] text-sm">
+                              {vacante.titulo}
+                            </span>
+                            <span className="text-[10px] text-[#464555]">ID: #{formatId(vacante.id)}</span>
+                          </div>
+                        </td>
+                        <td className="px-4 py-4 text-sm text-[#464555]">
+                          {vacante.ubicacion}
+                        </td>
+                        <td className="px-4 py-4">
+                          <span className="px-2 py-0.5 text-[9px] font-bold uppercase bg-[#e2dfff] text-[#3525cd] rounded-full">
+                            {vacante.tipoContrato}
+                          </span>
+                        </td>
+                        <td className="px-4 py-4 text-sm font-medium text-[#131b2e]">
+                          {formatSalaryRange(vacante.salarioMin, vacante.salarioMax)}
+                        </td>
+                        <td className="px-4 py-4 text-sm font-medium text-[#131b2e]">
+                          {vacante.postulacionesCount || 0}
+                        </td>
+                        {isAdmin && (
+                          <td className="px-4 py-4 text-right">
+                            <div className="flex justify-end gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                              <button
+                                onClick={(e) => {
+                                  e.stopPropagation();
+                                  handleEdit(vacante);
+                                }}
+                                className="p-1.5 hover:bg-[#eaedff] rounded-lg text-[#3525cd] transition-colors"
+                                title="Editar"
+                              >
+                                ✎
+                              </button>
+                              <button
+                                onClick={(e) => {
+                                  e.stopPropagation();
+                                  handleDelete(vacante.id);
+                                }}
+                                className="p-1.5 hover:bg-[#ffdad6] rounded-lg text-[#ba1a1a] transition-colors"
+                                title="Eliminar"
+                              >
+                                🗑
+                              </button>
+                            </div>
+                          </td>
+                        )}
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </>
           )}
 
           {/* Pagination */}
