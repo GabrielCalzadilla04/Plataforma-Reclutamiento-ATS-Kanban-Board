@@ -219,6 +219,7 @@ em { font-style: italic; color: var(--clr-accent); }
   display: flex;
   align-items: center;
   gap: 16px;
+  flex-shrink: 0;
 }
 
 .live-badge {
@@ -1334,6 +1335,9 @@ em { font-style: italic; color: var(--clr-accent); }
   .navbar__name { font-size: 1.1rem; }
   .navbar__actions { gap: 8px; }
   .navbar__actions .btn { padding: 8px 12px; font-size: 0.8rem; }
+  .admin-link { padding: 8px 12px; font-size: 0.75rem; }
+  .navbar__logout-btn { padding: 8px 12px; font-size: 0.75rem; }
+  .navbar__user-name { font-size: 0.8rem; padding: 0 4px; }
   .hero { padding: 56px 20px 40px; }
   .hero__search { flex-direction: column; }
   .hero__stats { gap: 18px; }
@@ -1343,6 +1347,19 @@ em { font-style: italic; color: var(--clr-accent); }
   .modal__info-grid { grid-template-columns: 1fr; }
   .modal__footer { flex-direction: column; }
   .footer__inner { flex-direction: column; }
+}
+
+/* Small screens */
+@media (max-width: 480px) {
+  .navbar { padding: 0 10px; gap: 6px; height: 60px; }
+  .navbar__brand { gap: 8px; }
+  .navbar__name { font-size: 0.95rem; }
+  .navbar__logo-img { height: 32px; }
+  .navbar__actions { gap: 6px; }
+  .admin-link { padding: 7px 10px; font-size: 0.7rem; }
+  .navbar__logout-btn { padding: 7px 10px; font-size: 0.7rem; }
+  .navbar__user-name { font-size: 0.75rem; padding: 0 2px; }
+  .navbar__actions .btn { padding: 7px 10px; font-size: 0.7rem; }
 }
 
 /* Extra small screens */
